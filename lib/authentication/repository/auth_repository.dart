@@ -15,6 +15,8 @@ abstract class AuthRepository {
     required String password,
   });
 
+  get currentUser => FirebaseAuth.instance.currentUser;
+
   Future<void> signUpWithEmailAndPassword({
     required String name,
     required String email,
