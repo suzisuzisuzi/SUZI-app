@@ -34,7 +34,6 @@ class DatalogRepository {
   Future<void> postDatalog(String firebaseID) async {
     final position = await _determinePosition();
     final url = "https://suzi-backend.onrender.com/entries/$firebaseID";
-    await Future.delayed(const Duration(seconds: 2));
     final body = jsonEncode({
       "timestamp": "${DateTime.now().toIso8601String()}Z",
       "firebaseID": firebaseID,

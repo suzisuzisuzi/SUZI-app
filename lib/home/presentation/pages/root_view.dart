@@ -19,9 +19,13 @@ class _RootViewState extends State<RootView> {
           case 0:
             return const HomePage();
           case 1:
-            return const Center(
+            return Center(
               child: Text(
                 "Map",
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Technor',
+                    ),
               ),
             );
           default:

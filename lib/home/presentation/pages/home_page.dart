@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:rive/rive.dart';
@@ -31,11 +32,12 @@ class HomePage extends ConsumerWidget {
             icon: const Icon(Icons.logout),
           ),
         ],
-        title: const Text(
+        title: Text(
           "suzi",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Technor',
+              ),
         ),
       ),
       body: Stack(
@@ -92,7 +94,7 @@ class HomePage extends ConsumerWidget {
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Technor',
                               ),
-                        ),
+                        ).animate().rotate(),
                 ],
               ),
             ),
