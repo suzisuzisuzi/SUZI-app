@@ -20,6 +20,7 @@ dependencies:
   http: ^1.2.0
   rive: ^0.12.4
   loading_animation_widget: ^1.2.0+4
+  geolocator: ^10.1.0
 
 dev_dependencies:
   flutter_test:
@@ -38,6 +39,14 @@ flutter:
     - assets/illustrations/illustration3.png
     - assets/illustrations/button.png
     - assets/rive/blob.riv
+    - assets/rive/blob1.riv
+    - assets/rive/blob2.riv
+    - assets/rive/blob3.riv
+    - assets/illustrations/background.png
+    - assets/icons/nav1.png
+    - assets/icons/nav2.png
+    - assets/icons/nav1s.png
+    - assets/icons/nav2s.png
 
   fonts:
     - family: Technor

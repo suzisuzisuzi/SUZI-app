@@ -58,7 +58,7 @@ class SplashPage extends StatelessWidget {
                 ),
               ),
               const Spacer(
-                flex: 2,
+                flex: 4,
               ),
             ],
           ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -39,45 +38,74 @@ class HomePage extends ConsumerWidget {
           ),
         ),
       ),
-      body: Center(
-        child: GestureDetector(
-          onTap: state.isLoading
-              ? null
-              : () => ref.read(logControllerProvider.notifier).logData(),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              const SizedBox(
-                width: 200,
-                height: 200,
-                child: RiveAnimation.asset(
-                  "assets/rive/blob.riv",
-                ),
-              ),
-              state.isLoading
-                  ? LoadingAnimationWidget.dotsTriangle(
-                      color: Theme.of(context).colorScheme.onBackground,
-                      size: 42,
-                    )
-                  : Text(
-                      "log",
-                      style:
-                          Theme.of(context).textTheme.headlineMedium?.copyWith(
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Positioned(
+            left: -100,
+            child: Image.asset("assets/illustrations/background.png"),
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: state.isLoading
+                  ? null
+                  : () => ref.read(logControllerProvider.notifier).logData(),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  const Stack(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        height: 200,
+                        child: RiveAnimation.asset(
+                          "assets/rive/blob.riv",
+                        ),
+                      ),
+                      SizedBox(
+                        width: 200,
+                        height: 200,
+                        child: RiveAnimation.asset(
+                          "assets/rive/blob2.riv",
+                        ),
+                      ),
+                      SizedBox(
+                        width: 200,
+                        height: 200,
+                        child: RiveAnimation.asset(
+                          "assets/rive/blob3.riv",
+                        ),
+                      ),
+                    ],
+                  ),
+                  state.isLoading
+                      ? LoadingAnimationWidget.dotsTriangle(
+                          color: Theme.of(context).colorScheme.onBackground,
+                          size: 42,
+                        )
+                      : Text(
+                          "log",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium
+                              ?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Technor',
                               ),
-                    ),
-            ],
+                        ),
+                ],
+              ),
+            ),
+            // child: FilledButton(
+            //   onPressed: state.isLoading
+            //       ? null
+            //       : () => ref.read(logControllerProvider.notifier).logData(),
+            //   child: state.isLoading
+            //       ? const CupertinoActivityIndicator()
+            //       : const Text("Log"),
+            // ),
           ),
-        ),
-        // child: FilledButton(
-        //   onPressed: state.isLoading
-        //       ? null
-        //       : () => ref.read(logControllerProvider.notifier).logData(),
-        //   child: state.isLoading
-        //       ? const CupertinoActivityIndicator()
-        //       : const Text("Log"),
-        // ),
+        ],
       ),
     );
   }

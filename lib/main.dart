@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:suzi_app/authentication/repository/auth_repository.dart';
 import 'package:suzi_app/firebase_options.dart';
 import 'package:suzi_app/home/presentation/pages/home_page.dart';
+import 'package:suzi_app/home/presentation/pages/root_view.dart';
 import 'package:suzi_app/shared/presentation/splash_page.dart';
 import 'package:suzi_app/theme.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends ConsumerWidget {
           if (user == null) {
             return const SplashPage();
           } else {
-            return const HomePage();
+            return const RootView();
           }
         },
         loading: () => const Scaffold(
