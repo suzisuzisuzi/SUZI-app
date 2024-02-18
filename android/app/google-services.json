@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "906288751044",
+    "project_id": "suzisuzisuzi",
+    "storage_bucket": "suzisuzisuzi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906288751044:android:2fbe53d8ff97d405de0491",
+        "android_client_info": {
+          "package_name": "me.chandramdutta.suzi_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906288751044-n30rb64cif4kk62ss6nak724p5ani1ae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.chandramdutta.suzi_app",
+            "certificate_hash": "3b4e84407070a752118ed054c625bde546506322"
+          }
+        },
+        {
+          "client_id": "906288751044-oahnfghoe77er16r352nnsr6lk0o5ftp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX48AcgWgt0gJo9Ks8hAVhZrLh9KXlcoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906288751044-oahnfghoe77er16r352nnsr6lk0o5ftp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906288751044-pfkvdsvg11129b3131bh9sarcfiodu53.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "me.chandramdutta.suziApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

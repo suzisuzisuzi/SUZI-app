@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Suzi Map</string>
+    <string name="change_map">Change Map</string>
+
+    <string-array name="map_types">
+        <item>Normal</item>
+        <item>Satellite</item>
+        <item>Terrain</item>
+        <item>Hybrid</item>
+    </string-array>
+
+</resources>

@@ -31,7 +31,7 @@ class DatalogRepository {
     return await Geolocator.getCurrentPosition();
   }
 
-  Future<void> postDatalog(String firebaseID) async {
+  Future<void> postDatalog(String firebaseID, double rating) async {
     final position = await _determinePosition();
     final url = "https://suzi-backend.onrender.com/entries/$firebaseID";
     final body = jsonEncode({
@@ -41,6 +41,7 @@ class DatalogRepository {
       "longitude": position.longitude,
       "altitude": position.altitude,
       "category": "test",
+      "rating": rating
     });
 
     final response = await http.post(

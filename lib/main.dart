@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:suzi_app/authentication/repository/auth_repository.dart';
 import 'package:suzi_app/firebase_options.dart';
-import 'package:suzi_app/home/presentation/pages/home_page.dart';
 import 'package:suzi_app/home/presentation/pages/root_view.dart';
 import 'package:suzi_app/shared/presentation/splash_page.dart';
 import 'package:suzi_app/theme.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suzi_app/heatmap/presentation/pages/heatmap_page.dart';
 import 'package:suzi_app/home/presentation/pages/home_page.dart';
 
 class RootView extends StatefulWidget {
@@ -19,15 +20,7 @@ class _RootViewState extends State<RootView> {
           case 0:
             return const HomePage();
           case 1:
-            return Center(
-              child: Text(
-                "Map",
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Technor',
-                    ),
-              ),
-            );
+            return HeatmapPage();
           default:
             return const HomePage();
         }
