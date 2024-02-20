@@ -39,6 +39,30 @@ class _HomePageState extends ConsumerState<HomePage> {
         actions: [
           IconButton(
             onPressed: () {
+              showAboutDialog(
+                context: context,
+                applicationIcon: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    "assets/icons/appicon.png",
+                    width: 50,
+                  ),
+                ),
+                applicationVersion: "1.0.0",
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Privacy Policy",
+                    ),
+                  ),
+                ],
+              );
+            },
+            icon: const Icon(Icons.info_outline_rounded),
+          ),
+          IconButton(
+            onPressed: () {
               ref.read(firebaseAuthRepositoryProvider).signOut();
             },
             icon: const Icon(Icons.logout),

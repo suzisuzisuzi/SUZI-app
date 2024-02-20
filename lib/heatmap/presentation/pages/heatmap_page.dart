@@ -36,7 +36,7 @@ class HeatmapPage extends StatelessWidget {
       ),
     )
     ..loadRequest(
-        Uri.parse('https://chandram-dutta.github.io/suzi_google_maps/'));
+        Uri.parse('https://suzisuzisuzi.github.io/SUZI-googlemaps-web/'));
 
   @override
   Widget build(BuildContext context) {
