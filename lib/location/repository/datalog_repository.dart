@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -33,7 +34,7 @@ class DatalogRepository {
 
   Future<void> postDatalog(String firebaseID, double rating) async {
     final position = await _determinePosition();
-    final url = "https://suzi-backend.onrender.com/entries/$firebaseID";
+    final url = "${dotenv.env['BASE_URL']}entries/$firebaseID";
     final body = jsonEncode({
       "timestamp": "${DateTime.now().toIso8601String()}Z",
       "firebaseID": firebaseID,
