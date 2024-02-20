@@ -1,5 +1,5 @@
+![app](https://github.com/suzisuzisuzi/SUZI-app/assets/81961406/d36ed341-0292-41f1-aee6-5c2509e2e427)
 # SUZI Flutter App
-
 This is the flutter app for the SUZI Project for the Google Solution Challenge 2024 by Team TBD.
 
 ## Instructions to Run
