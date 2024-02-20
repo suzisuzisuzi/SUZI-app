@@ -7,8 +7,8 @@ import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
 
-class PublicToiletViewFactory : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+class NativeViewFactory : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
     override fun create(context: Context, viewId: Int, args: Any?): PlatformView {
-        return PublicToiletView(context, viewId, args as Map<String, String>)
+        return NativeView(context, viewId, args as Map<String, String>)
     }
 }

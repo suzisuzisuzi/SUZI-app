@@ -8,6 +8,13 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+//        flutterEngine
+//            .platformViewsController
+//            .registry
+//            .registerViewFactory(
+//                "@views/public-toilet-view",
+//                PublicToiletViewFactory()
+//            )
         flutterEngine
             .platformViewsController
             .registry

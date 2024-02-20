@@ -25,7 +25,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
-internal class PublicToiletView(private val context: Context, id: Int,private val creationParams: Map<String, String>) :
+internal class NativeView(private val context: Context, id: Int, private val creationParams: Map<String, String>) :
     PlatformView, OnMapReadyCallback  {
 
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
