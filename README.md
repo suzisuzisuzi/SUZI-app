@@ -7,7 +7,16 @@ Create a .env file at the root of the project and add the following environment 
 ```
 BASE_URL=<BACKEND URL>
 ```
-Make sure to have flutter installed on your system and an Android/iOS Simulator running. Run the following commands to start the app.
+Make sure to have flutter installed on your system and an Android/iOS Simulator running.
+Install FlutterFire CLI tools by running the following command.
+```
+flutter pub global activate flutterfire_cli
+```
+Configure Firebase by running the following command.
+```
+flutterfire configure
+```
+ Run the following commands to start the app.
 ```
 flutter pub get
 flutter run

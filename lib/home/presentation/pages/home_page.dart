@@ -5,6 +5,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:rive/rive.dart';
 import 'package:suzi_app/authentication/repository/auth_repository.dart';
 import 'package:suzi_app/home/presentation/controller/log_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -51,7 +52,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                 applicationVersion: "1.0.0",
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      launchUrl(Uri.parse("https://dscv.it/privacy-policy/"));
+                    },
                     child: const Text(
                       "Privacy Policy",
                     ),

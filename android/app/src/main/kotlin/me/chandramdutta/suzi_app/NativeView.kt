@@ -96,7 +96,7 @@ internal class NativeView(private val context: Context, id: Int, creationParams:
     private fun addHeatmap() {
         if (isNetworkAvailable()) {
             CoroutineScope(ioDispatcher).launch {
-                val geoJsonData = fetchGeoJsonData("https://suzi-backend.onrender.com/gheatmap/test")
+                val geoJsonData = fetchGeoJsonData("https://suzi-backend-kunqmukjgq-uw.a.run.app/gheatmap/test")
                 val list = parseGeoJsonData(geoJsonData)
 
                 withContext(Dispatchers.Main) {
