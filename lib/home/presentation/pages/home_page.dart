@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -6,6 +7,7 @@ import 'package:rive/rive.dart';
 import 'package:suzi_app/authentication/repository/auth_repository.dart';
 import 'package:suzi_app/home/presentation/controller/log_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wheel_slider/wheel_slider.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -17,8 +19,22 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   bool showbutton = false;
 
+  final categories = ["Public Toilets", "Poor Children"];
+
+  int categoryVersion = 0;
+
   @override
   Widget build(BuildContext context) {
+    final List<Icon> icons = [
+      Icon(
+        Icons.wc,
+        color: Theme.of(context).colorScheme.onBackground,
+      ),
+      Icon(
+        Icons.child_care,
+        color: Theme.of(context).colorScheme.onBackground,
+      ),
+    ];
     final AsyncValue<void> state = ref.watch(logControllerProvider);
     ref.listen<AsyncValue>(
       logControllerProvider,
@@ -37,6 +53,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     );
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Theme.of(context).colorScheme.background,
         actions: [
           IconButton(
             onPressed: () {
@@ -79,190 +96,235 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
         ),
       ),
-      body: Stack(
-        alignment: Alignment.center,
+      body: Column(
         children: [
-          Positioned(
-            // right: -300,
-            child: Image.asset("assets/illustrations/background.png"),
-          ),
-          Center(
-            child: GestureDetector(
-              onTap: () {
-                if (showbutton) {
-                  setState(() {
-                    showbutton = false;
-                  });
-                } else {
-                  setState(() {
-                    showbutton = true;
-                  });
-                }
-              },
-              // onTap: state.isLoading
-              //     ? null
-              //     : () => ref.read(logControllerProvider.notifier).logData(),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  const Stack(
+          const Spacer(),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                // right: -300,
+                child: Image.asset("assets/illustrations/background.png"),
+              ),
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    switch (categoryVersion) {
+                      case 0:
+                        if (showbutton) {
+                          setState(() {
+                            showbutton = false;
+                          });
+                        } else {
+                          setState(() {
+                            showbutton = true;
+                          });
+                        }
+                      case 1:
+                        if (state.isLoading) {
+                          return;
+                        } else {
+                          ref
+                              .read(logControllerProvider.notifier)
+                              .logData(1, "poor-children");
+                        }
+                    }
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: [
-                      SizedBox(
-                        width: 200,
-                        height: 200,
-                        child: RiveAnimation.asset(
-                          "assets/rive/blob.riv",
-                        ),
+                      const Stack(
+                        children: [
+                          SizedBox(
+                            width: 200,
+                            height: 200,
+                            child: RiveAnimation.asset(
+                              "assets/rive/blob.riv",
+                            ),
+                          ),
+                        ],
                       ),
+                      state.isLoading
+                          ? LoadingAnimationWidget.dotsTriangle(
+                              color: Theme.of(context).colorScheme.onBackground,
+                              size: 42,
+                            )
+                          : showbutton
+                              ? Icon(
+                                  Icons.close,
+                                  size: 48,
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                )
+                              : Text(
+                                  "log",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Technor',
+                                      ),
+                                ).animate().rotate(),
                     ],
                   ),
-                  state.isLoading
-                      ? LoadingAnimationWidget.dotsTriangle(
-                          color: Theme.of(context).colorScheme.onBackground,
-                          size: 42,
-                        )
-                      : showbutton
-                          ? Icon(
-                              Icons.close,
-                              size: 48,
-                              color: Theme.of(context).colorScheme.onSecondary,
-                            )
-                          : Text(
-                              "log",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineMedium
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Technor',
+                ),
+              ),
+              Positioned(
+                top: 1,
+                child: !showbutton
+                    ? const SizedBox()
+                    : Row(
+                        children: [
+                          GestureDetector(
+                            onTap: state.isLoading
+                                ? null
+                                : () => ref
+                                    .read(logControllerProvider.notifier)
+                                    .logData(5, "public-toilets"),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 28.0, right: 28.0),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  const SizedBox(
+                                    width: 100,
+                                    height: 100,
+                                    child: RiveAnimation.asset(
+                                      "assets/rive/blob.riv",
+                                    ),
                                   ),
-                            ).animate().rotate(),
+                                  state.isLoading
+                                      ? LoadingAnimationWidget.dotsTriangle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground,
+                                          size: 18,
+                                        )
+                                      : Text(
+                                          "👎🏻",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineSmall,
+                                        )
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: state.isLoading
+                                ? null
+                                : () => ref
+                                    .read(logControllerProvider.notifier)
+                                    .logData(0, "public-toilets"),
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 28.0),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  const SizedBox(
+                                    width: 100,
+                                    height: 100,
+                                    child: RiveAnimation.asset(
+                                      "assets/rive/blob.riv",
+                                    ),
+                                  ),
+                                  state.isLoading
+                                      ? LoadingAnimationWidget.dotsTriangle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground,
+                                          size: 18,
+                                        )
+                                      : Text(
+                                          "😐",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineSmall,
+                                        )
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: state.isLoading
+                                ? null
+                                : () => ref
+                                    .read(logControllerProvider.notifier)
+                                    .logData(-5, "public-toilets"),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 28.0, left: 28.0),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  const SizedBox(
+                                    width: 100,
+                                    height: 100,
+                                    child: RiveAnimation.asset(
+                                      "assets/rive/blob.riv",
+                                    ),
+                                  ),
+                                  state.isLoading
+                                      ? LoadingAnimationWidget.dotsTriangle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground,
+                                          size: 18,
+                                        )
+                                      : Text(
+                                          "👍🏻",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineSmall,
+                                        )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+              ),
+            ],
+          ),
+          const Spacer(),
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text(
+                    categories[categoryVersion],
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Technor',
+                        ),
+                  ),
+                  WheelSlider.customWidget(
+                    totalCount: 2,
+                    initValue: 0,
+                    isInfinite: false,
+                    scrollPhysics: const BouncingScrollPhysics(),
+                    onValueChanged: (val) {
+                      setState(() {
+                        categoryVersion = val;
+                      });
+                    },
+                    hapticFeedbackType: HapticFeedbackType.vibrate,
+                    showPointer: false,
+                    itemSize: 80,
+                    children: icons,
+                  ),
                 ],
               ),
             ),
-            // child: FilledButton(
-            //   onPressed: state.isLoading
-            //       ? null
-            //       : () => ref.read(logControllerProvider.notifier).logData(),
-            //   child: state.isLoading
-            //       ? const CupertinoActivityIndicator()
-            //       : const Text("Log"),
-            // ),
           ),
-          Positioned(
-            top: 100,
-            child: !showbutton
-                ? const SizedBox()
-                : Row(
-                    children: [
-                      GestureDetector(
-                        onTap: state.isLoading
-                            ? null
-                            : () => ref
-                                .read(logControllerProvider.notifier)
-                                .logData(-5),
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(top: 28.0, right: 28.0),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const SizedBox(
-                                width: 100,
-                                height: 100,
-                                child: RiveAnimation.asset(
-                                  "assets/rive/blob.riv",
-                                ),
-                              ),
-                              state.isLoading
-                                  ? LoadingAnimationWidget.dotsTriangle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onBackground,
-                                      size: 18,
-                                    )
-                                  : Text(
-                                      "👎🏻",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall,
-                                    )
-                            ],
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: state.isLoading
-                            ? null
-                            : () => ref
-                                .read(logControllerProvider.notifier)
-                                .logData(0),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 28.0),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const SizedBox(
-                                width: 100,
-                                height: 100,
-                                child: RiveAnimation.asset(
-                                  "assets/rive/blob.riv",
-                                ),
-                              ),
-                              state.isLoading
-                                  ? LoadingAnimationWidget.dotsTriangle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onBackground,
-                                      size: 18,
-                                    )
-                                  : Text(
-                                      "😐",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall,
-                                    )
-                            ],
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: state.isLoading
-                            ? null
-                            : () => ref
-                                .read(logControllerProvider.notifier)
-                                .logData(5),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 28.0, left: 28.0),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const SizedBox(
-                                width: 100,
-                                height: 100,
-                                child: RiveAnimation.asset(
-                                  "assets/rive/blob.riv",
-                                ),
-                              ),
-                              state.isLoading
-                                  ? LoadingAnimationWidget.dotsTriangle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onBackground,
-                                      size: 18,
-                                    )
-                                  : Text(
-                                      "👍🏻",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall,
-                                    )
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+          const SizedBox(
+            height: 24,
           ),
         ],
       ),

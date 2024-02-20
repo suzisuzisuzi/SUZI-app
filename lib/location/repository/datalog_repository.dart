@@ -32,7 +32,8 @@ class DatalogRepository {
     return await Geolocator.getCurrentPosition();
   }
 
-  Future<void> postDatalog(String firebaseID, double rating) async {
+  Future<void> postDatalog(
+      String firebaseID, double rating, String category) async {
     final position = await _determinePosition();
     final url = "${dotenv.env['BASE_URL']}entries/$firebaseID";
     final body = jsonEncode({
@@ -41,7 +42,7 @@ class DatalogRepository {
       "latitude": position.latitude,
       "longitude": position.longitude,
       "altitude": position.altitude,
-      "category": "test",
+      "category": category,
       "rating": rating
     });
 

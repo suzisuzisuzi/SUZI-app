@@ -11,13 +11,13 @@ class LogController extends _$LogController {
     // no-op
   }
 
-  Future<void> logData(double rating) async {
+  Future<void> logData(double rating, String category) async {
     final authRepository = ref.read(firebaseAuthRepositoryProvider);
     final datalogRepository = ref.read(datalogRepositoryProvider);
     final firebaseID = authRepository.currentUser?.uid;
     state = const AsyncLoading();
     state = await AsyncValue.guard(
-      () => datalogRepository.postDatalog(firebaseID, rating),
+      () => datalogRepository.postDatalog(firebaseID, rating, category),
     );
   }
 }
