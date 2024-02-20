@@ -20,7 +20,7 @@ dependencies:
   http: ^1.2.0
   rive: ^0.12.4
   loading_animation_widget: ^1.2.0+4
-  geolocator: ^10.1.0
+  geolocator: ^11.0.0
   flutter_animate: ^4.5.0
   webview_flutter: ^4.5.0
   android_intent_plus: ^4.0.3
