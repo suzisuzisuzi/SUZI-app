@@ -1,16 +1,14 @@
-# suzi_app
+# SUZI Flutter App
 
-SUZI
+This is the flutter app for the SUZI Project for the Google Solution Challenge 2024 by Team TBD.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Instructions to Run
+Create a .env file at the root of the project and add the following environment variables for backend host URL. Make sure your backend server is running. To know more about the backend server, visit [SUZI Backend](https://github.com/suzisuzisuzi/SUZI-backend).
+```
+BASE_URL=<BACKEND URL>
+```
+Make sure to have flutter installed on your system and an Android/iOS Simulator running. Run the following commands to start the app.
+```
+flutter pub get
+flutter run
+```
