@@ -20,7 +20,7 @@ class _RootViewState extends State<RootView> {
           case 0:
             return const HomePage();
           case 1:
-            return const HeatmapPage();
+            return HeatmapPage();
           default:
             return const HomePage();
         }
