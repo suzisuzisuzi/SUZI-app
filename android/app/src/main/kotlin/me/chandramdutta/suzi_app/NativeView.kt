@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 
@@ -26,7 +25,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
-internal class NativeView(private val context: Context, id: Int, creationParams: Map<String?, Any?>?) :
+internal class PublicToiletView(private val context: Context, id: Int,private val creationParams: Map<String, String>) :
     PlatformView, OnMapReadyCallback  {
 
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -82,21 +81,20 @@ internal class NativeView(private val context: Context, id: Int, creationParams:
         mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(19.0, 73.0))
-                .title("Hot Women")
-                .snippet("Test Category for SUZI development")
+                .title(creationParams["heatmap"].toString())
         )
 
 
         val defaultLocation = LatLng(19.0, 73.0)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 8f))
 
-        addHeatmap()
+        addHeatmap(creationParams["heatmap"].toString())
     }
 
-    private fun addHeatmap() {
+    private fun addHeatmap(param: String) {
         if (isNetworkAvailable()) {
             CoroutineScope(ioDispatcher).launch {
-                val geoJsonData = fetchGeoJsonData("https://suzi-backend-kunqmukjgq-uw.a.run.app/gheatmap/test")
+                val geoJsonData = fetchGeoJsonData("https://suzi-backend-kunqmukjgq-uw.a.run.app/gheatmap/$param")
                 val list = parseGeoJsonData(geoJsonData)
 
                 withContext(Dispatchers.Main) {
