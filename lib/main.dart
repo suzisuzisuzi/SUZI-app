@@ -29,6 +29,7 @@ class MyApp extends ConsumerWidget {
     final user = ref.watch(userStatusChangesProvider);
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'SUZI',
       theme: theme,
       darkTheme: theme,

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:wheel_slider/wheel_slider.dart';
 
@@ -18,7 +19,7 @@ class HeatmapPage extends StatefulWidget {
 
 class _HeatmapPageState extends State<HeatmapPage> {
   ValueNotifier<int> categoryVersion = ValueNotifier(0);
-  final categories = ["Public Toilets", "Poor Children"];
+  final categories = ["Public Toilets", "Needy Children"];
   final Map<String, dynamic> creationParams = <String, dynamic>{};
   final List<String> viewType = [
     '@views/public-toilet-view',
@@ -54,14 +55,20 @@ class _HeatmapPageState extends State<HeatmapPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Icon> icons = [
-      Icon(
-        Icons.wc,
-        color: Theme.of(context).colorScheme.onBackground,
+    final List<Widget> icons = [
+      Padding(
+        padding: const EdgeInsets.only(left: 18.0),
+        child: FaIcon(
+          FontAwesomeIcons.toiletPaperSlash,
+          color: Theme.of(context).colorScheme.onBackground,
+        ),
       ),
-      Icon(
-        Icons.child_care,
-        color: Theme.of(context).colorScheme.onBackground,
+      Padding(
+        padding: const EdgeInsets.only(left: 30.0),
+        child: FaIcon(
+          FontAwesomeIcons.child,
+          color: Theme.of(context).colorScheme.onBackground,
+        ),
       ),
     ];
     return Scaffold(

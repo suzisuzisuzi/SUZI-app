@@ -30,10 +30,13 @@ class SplashPage extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               const Spacer(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 18.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Text(
-                  "An enchanting app, a digital diary weaving memories into vibrant vibes, preserving moments with nostalgic grace, a soulful journey unfolds.",
+                  "Your observations matter.",
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontFamily: 'Technor',
+                      ),
                   textAlign: TextAlign.center,
                 ),
               ),

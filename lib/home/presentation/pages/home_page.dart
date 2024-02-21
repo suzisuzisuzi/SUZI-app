@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:rive/rive.dart';
 import 'package:suzi_app/authentication/repository/auth_repository.dart';
@@ -18,20 +19,26 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   bool showbutton = false;
 
-  final categories = ["Public Toilets", "Poor Children"];
+  final categories = ["Public Toilets", "Needy Children"];
 
   int categoryVersion = 0;
 
   @override
   Widget build(BuildContext context) {
-    final List<Icon> icons = [
-      Icon(
-        Icons.wc,
-        color: Theme.of(context).colorScheme.onBackground,
+    final List<Widget> icons = [
+      Padding(
+        padding: const EdgeInsets.only(left: 18.0),
+        child: FaIcon(
+          FontAwesomeIcons.toiletPaperSlash,
+          color: Theme.of(context).colorScheme.onBackground,
+        ),
       ),
-      Icon(
-        Icons.child_care,
-        color: Theme.of(context).colorScheme.onBackground,
+      Padding(
+        padding: const EdgeInsets.only(left: 30.0),
+        child: FaIcon(
+          FontAwesomeIcons.child,
+          color: Theme.of(context).colorScheme.onBackground,
+        ),
       ),
     ];
     final AsyncValue<void> state = ref.watch(logControllerProvider);
@@ -58,6 +65,8 @@ class _HomePageState extends ConsumerState<HomePage> {
             onPressed: () {
               showAboutDialog(
                 context: context,
+                applicationLegalese:
+                    "Made by Team TBD.\n- Chandram Dutta\n- Aditya Chheda\n- Srivatsa Davuluri",
                 applicationIcon: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.asset(
@@ -65,14 +74,17 @@ class _HomePageState extends ConsumerState<HomePage> {
                     width: 50,
                   ),
                 ),
-                applicationVersion: "1.0.0",
+                applicationVersion: "1.0.1",
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      launchUrl(Uri.parse("https://dscv.it/privacy-policy/"));
-                    },
-                    child: const Text(
-                      "Privacy Policy",
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        launchUrl(Uri.parse("https://dscv.it/privacy-policy/"));
+                      },
+                      child: const Text(
+                        "Privacy Policy",
+                      ),
                     ),
                   ),
                 ],
@@ -178,9 +190,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                           GestureDetector(
                             onTap: state.isLoading
                                 ? null
-                                : () => ref
-                                    .read(logControllerProvider.notifier)
-                                    .logData(5, "public-toilets"),
+                                : () {
+                                    ref
+                                        .read(logControllerProvider.notifier)
+                                        .logData(5, "public-toilets");
+                                    setState(() {
+                                      showbutton = false;
+                                    });
+                                  },
                             child: Padding(
                               padding:
                                   const EdgeInsets.only(top: 28.0, right: 28.0),
@@ -214,9 +231,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                           GestureDetector(
                             onTap: state.isLoading
                                 ? null
-                                : () => ref
-                                    .read(logControllerProvider.notifier)
-                                    .logData(0, "public-toilets"),
+                                : () {
+                                    ref
+                                        .read(logControllerProvider.notifier)
+                                        .logData(0, "public-toilets");
+                                    setState(() {
+                                      showbutton = false;
+                                    });
+                                  },
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 28.0),
                               child: Stack(
@@ -249,9 +271,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                           GestureDetector(
                             onTap: state.isLoading
                                 ? null
-                                : () => ref
-                                    .read(logControllerProvider.notifier)
-                                    .logData(-5, "public-toilets"),
+                                : () {
+                                    ref
+                                        .read(logControllerProvider.notifier)
+                                        .logData(-5, "public-toilets");
+                                    setState(() {
+                                      showbutton = false;
+                                    });
+                                  },
                             child: Padding(
                               padding:
                                   const EdgeInsets.only(top: 28.0, left: 28.0),
@@ -315,7 +342,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     },
                     hapticFeedbackType: HapticFeedbackType.vibrate,
                     showPointer: false,
-                    itemSize: 80,
+                    itemSize: 64,
                     children: icons,
                   ),
                 ],

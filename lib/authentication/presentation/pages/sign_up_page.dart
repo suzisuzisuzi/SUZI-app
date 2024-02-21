@@ -56,7 +56,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
               child: Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: Form(
-                  autovalidateMode: AutovalidateMode.always,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
