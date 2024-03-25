@@ -25,7 +25,7 @@ dependencies:
   webview_flutter: ^4.5.0
   android_intent_plus: ^4.0.3
   flutter_dotenv: ^5.1.0
-  flutter_native_splash: ^2.3.10
+  flutter_native_splash: ^2.4.0
   url_launcher: ^6.2.5
   wheel_slider: ^1.2.1
 
