@@ -18,7 +18,7 @@ dependencies:
   google_sign_in: ^6.2.1
   validators: ^3.0.0
   http: ^1.2.0
-  rive: ^0.12.4
+  rive: ^0.13.2
   loading_animation_widget: ^1.2.0+4
   geolocator: ^11.0.0
   flutter_animate: ^4.5.0
